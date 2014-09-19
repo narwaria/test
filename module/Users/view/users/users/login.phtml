@@ -1,0 +1,39 @@
+
+<div class="io-header"><img src="<?php echo $this->basePath('images/logo-io.png'); ?>" alt="Interview Organiser"></div>
+<div class="io-body">
+<?php  echo $this->flashMessenger()->render('danger', array('alert', 'alert-danger')); ?>
+<?php  echo $this->flashMessenger()->render('info', array('alert', 'alert-info')); ?>
+<?php  echo $this->flashMessenger()->render('warning', array('alert', 'alert-warning')); ?>
+<?php
+	$form = $this->form;
+	$form->prepare();
+	$form->setAttribute('action', $this->url(NULL, array('controller'=>'users', 'action' => 'login')));
+	$form->setAttribute('method', 'post');
+	echo $this->form()->openTag($form);
+?>
+          <div class="form-group"> <span><i class="fa fa-user"></i></span>
+          	<?php echo $this->formElement($form->get('email')); ?>
+            <!-- <input type="email" placeholder="Email Address" id="" class="form-control"> -->
+          </div>
+          <div class="form-group"> <span><i class="fa fa-lock"></i></span>
+          	<?php	echo $this->formElement($form->get('password'));
+                  echo $this->formElementErrors($form->get('password'));	?>
+           <!-- <input type="password" placeholder="Password" id="" class="form-control"> -->
+          </div>
+
+          <!-- <button class="btn btn-io mt-10" type="submit">Login</button> -->
+          <?php echo $this->formElement($form->get('submit')); ?>
+
+          <div class="clearfix"></div>
+          <div class="pull-left">
+            <div class="checkbox">
+              <label>
+              	<?php echo $this->formElement($form->get('rem_me')); ?>                
+                Remember Me</label>
+            </div>
+          </div>
+          <div class="pull-right">
+            <div class="forgot-pwd"><a href="<?php echo $this->url(NULL, array('controller'=>'users', 'action' => 'forget')) ?>">Forgot Password?</a></div>
+          </div>
+<?php echo $this->form()->closeTag() ?>
+</div>
